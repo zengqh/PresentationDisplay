@@ -3,9 +3,11 @@
 MainActivity中：
 
 // 主屏
+
 setContentView(new MainGLSurfaceView(this));
 
 // 副屏显示
+
 PresentationDisplay present_display = createPresentDisplay();
 if (present_display != null) present_display.showView();
 
