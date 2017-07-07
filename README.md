@@ -2,15 +2,18 @@
 
 MainActivity中：
 
-// 主屏
-        setContentView(new MainGLSurfaceView(this));
+##主屏
 
-        // 副屏显示
-        PresentationDisplay present_display = createPresentDisplay();
-        if (present_display != null) present_display.showView();
-
-// 创建副屏display
-
+```Java
+setContentView(new MainGLSurfaceView(this));
+```
+##副屏显示
+```Java
+PresentationDisplay present_display = createPresentDisplay();
+if (present_display != null) present_display.showView();
+```
+##创建副屏display
+```Java
 private PresentationDisplay createPresentDisplay() {
         DisplayManager display_mgr = (DisplayManager) getSystemService(Context.DISPLAY_SERVICE);
         Display[] displays = display_mgr.getDisplays(DisplayManager.DISPLAY_CATEGORY_PRESENTATION);
@@ -24,4 +27,4 @@ private PresentationDisplay createPresentDisplay() {
 
         return null;
     }
-
+```
