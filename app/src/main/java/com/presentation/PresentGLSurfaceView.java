@@ -15,9 +15,11 @@
  */
 package com.presentation;
 
+import android.app.Presentation;
 import android.content.Context;
 import android.hardware.display.DisplayManager;
 import android.opengl.GLSurfaceView;
+import android.util.AttributeSet;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.WindowManager;
@@ -30,6 +32,41 @@ import android.view.WindowManager;
 public class PresentGLSurfaceView extends GLSurfaceView {
 
     private final PresentGLRenderer mRenderer;
+
+    public PresentGLSurfaceView(Context context, AttributeSet attrs)
+    {
+        super(context, attrs);
+
+        // Create an OpenGL ES 2.0 context.
+        setEGLContextClientVersion(2);
+        //fix for error No Config chosen, but I don't know what this does.
+        super.setEGLConfigChooser(8 , 8, 8, 8, 16, 0);
+        // Set the Renderer for drawing on the GLSurfaceView
+        mRenderer = new PresentGLRenderer();
+        setRenderer(mRenderer);
+
+        // Render the view only when there is a change in the drawing data
+        setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                int i = 0;
+                while(true){
+                    mRenderer.setAngle(
+                            mRenderer.getAngle() +
+                                    (i * TOUCH_SCALE_FACTOR));  // = 180.0f / 320
+                    i += 10;
+                    requestRender();
+                    try{
+                        Thread.sleep(200);
+                    }catch (Exception e){
+
+                    }
+                }
+            }
+        }).start();
+    }
 
     public PresentGLSurfaceView(Context context) {
         super(context);

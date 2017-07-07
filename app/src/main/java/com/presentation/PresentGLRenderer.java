@@ -46,6 +46,8 @@ public class PresentGLRenderer implements GLSurfaceView.Renderer {
 
     private float mAngle;
 
+
+
     @Override
     public void onSurfaceCreated(GL10 unused, EGLConfig config) {
 

@@ -7,6 +7,7 @@ import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Display;
+import android.view.View;
 import android.view.WindowManager;
 
 
@@ -18,6 +19,7 @@ public class PresentationDisplay extends Presentation
 {
     private GLSurfaceView   gl_view_;
     private Display display_;
+    private View view_;
 
     public PresentationDisplay(Context outerContext, Display display)
     {
@@ -29,12 +31,13 @@ public class PresentationDisplay extends Presentation
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        gl_view_ = new PresentGLSurfaceView(this.getContext());
-        setContentView(gl_view_);
+        setContentView(view_);
     }
 
-    public void showView()
+    public void showView(View view)
     {
+        view_ = view;
+
         this.show();
     }
 

@@ -5,6 +5,8 @@ import android.content.Context;
 import android.hardware.display.DisplayManager;
 import android.os.Bundle;
 import android.view.Display;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.WindowManager;
 
 public class MainActivity extends Activity {
@@ -16,9 +18,13 @@ public class MainActivity extends Activity {
         // 主屏
         setContentView(new MainGLSurfaceView(this));
 
+
+
         // 副屏显示
+        LayoutInflater inflater = (LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
+        View view = inflater.inflate(R.layout.present_layout, null);
         PresentationDisplay present_display = createPresentDisplay();
-        if (present_display != null) present_display.showView();
+        if (present_display != null) present_display.showView(view);
     }
 
     private PresentationDisplay createPresentDisplay() {
