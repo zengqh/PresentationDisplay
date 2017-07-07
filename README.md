@@ -28,7 +28,7 @@ private PresentationDisplay createPresentDisplay() {
         return null;
     }
 ```
-## 副屏Glsurfaceview
+## 副屏Presentation可以叠glsurfaceview
 PresentationDisplay.java
 ```Java
 package com.presentation;
